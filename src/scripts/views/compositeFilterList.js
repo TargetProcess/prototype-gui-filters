@@ -3,6 +3,7 @@
 var React = require('react/addons');
 var _ = require('underscore');
 var FieldFilter = require('./fieldFilter');
+var AddNewField = require('./addNewField');
 
 var CompositeFilterList = React.createClass({
     getInitialState() {
@@ -12,13 +13,18 @@ var CompositeFilterList = React.createClass({
     },
 
     render: function() {
-        var fieldFilters = _.map(this.props.model.filters, filter =>
+        var model = this.props.model;
+
+        var fieldFilters = _.map(model.filters, filter =>
             <FieldFilter filterModel={filter}/>);
 
         return (
             <div className="filterList">
                 <div className="filterList-fields">
                     {fieldFilters}
+                    <AddNewField
+                        availableFields={model.newFieldSuggestions}
+                        addNewField={model.addNewField.bind(model)}/>
                 </div>
             </div>
         );

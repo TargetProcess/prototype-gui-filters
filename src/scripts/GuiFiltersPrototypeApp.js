@@ -14,6 +14,7 @@ var FilterListModel = require('./models/filterListModel');
 
 // views
 var CompositeFilter = require('./views/compositeFilterList');
+var AddNewField = require('./views/addNewField');
 
 var defaultFilters = [
     {
@@ -30,8 +31,22 @@ var defaultFilters = [
     }
 ];
 
+var allFields = [
+    {fieldName: 'Name'},
+    {fieldName: 'Iteration'},
+    {fieldName: 'Team iteration'},
+    {fieldName: 'Release'},
+    {fieldName: 'Assigned to'},
+    {fieldName: 'States'},
+    {fieldName: 'Tags'},
+    {fieldName: 'CreateDate'},
+    {fieldName: 'EndDate'},
+    {fieldName: 'Project'},
+    {fieldName: 'Team'}
+];
+
 var store = new FilterStore();
-var model = new FilterListModel(store, defaultFilters);
+var model = new FilterListModel(store, allFields, defaultFilters);
 
 var GuiFiltersPrototypeApp = React.createClass({
     componentDidMount() {
@@ -46,6 +61,7 @@ var GuiFiltersPrototypeApp = React.createClass({
                 <div className="main-centered">
                     <div className="compiledFilterText">{model.compiledFilterText}</div>
                     <CompositeFilter model={model}/>
+
                 </div>
             </div>
         );

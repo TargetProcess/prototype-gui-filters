@@ -5,6 +5,8 @@ class FilterModel {
         this._store = store;
         this.fieldName = fieldName;
         this.filterParts = filterParts;
+
+        this._isEditing = false;
     }
 
     get compiledFilterText() {
@@ -34,8 +36,9 @@ class FilterModel {
 }
 
 class FilterListModel {
-    constructor(store, filters) {
+    constructor(store, allFields, filters) {
         this._store = store;
+        this._allFields = allFields;
         this.filters = _.map(filters, f => new FilterModel(this._store, f));
     }
 
@@ -48,6 +51,19 @@ class FilterListModel {
             .join(' and ');
 
         return '?' + result;
+    }
+
+    get newFieldSuggestions() {
+        return _
+            .chain(this._allFields)
+            .map(f => f.fieldName)
+            .difference(_.map(this.filters, f => f.fieldName))
+            .value();
+    }
+
+    addNewField(fieldName) {
+        this.filters.push(new FilterModel(this._store, {fieldName: fieldName, filterParts: []}));
+        this._store.notifyFiltersChanged();
     }
 }
 

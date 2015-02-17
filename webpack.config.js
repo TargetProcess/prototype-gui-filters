@@ -38,7 +38,6 @@ module.exports = {
         }],
         loaders: [{
             test: /\.js$/,
-            exclude: /node_modules/,
             loader: 'react-hot!jsx-loader?harmony!babel?blacklist=useStrict'
         }, {
             test: /\.css$/,

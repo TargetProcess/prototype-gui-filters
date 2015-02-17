@@ -5,6 +5,14 @@ require('react-select/dist/default.css');
 var ReactSelect = require('react-select');
 
 var SuggestionList = React.createClass({
+    getDefaultProps() {
+        return {
+            autoFocus: false,
+            containerClassName: '',
+            options: []
+        }
+    },
+
     getInitialState() {
         return {
             selectedValue: '',
@@ -13,6 +21,10 @@ var SuggestionList = React.createClass({
     },
 
     componentDidMount() {
+        if (!this.props.autoFocus) {
+            return;
+        }
+
         var event = new MouseEvent('mousedown', {
             view: window,
             bubbles: true,
@@ -41,7 +53,7 @@ var SuggestionList = React.createClass({
         });
 
         return (
-            <div className={this.props.containerClassName || ""}>
+            <div className={this.props.containerClassName}>
                 <ReactSelect
                     ref="selectBox"
                     name="suggestion-box"

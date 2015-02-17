@@ -29,7 +29,8 @@ var AddNewField = React.createClass({
                 <div className="filterList-field">
                     <div className="filterList-field-name">
                         <SuggestionList
-                            containerClassName="filterList-addNewField-listContainer"
+                            autoFocus={true}
+                            containerClassName="filterList-addNewField-listContainer filterList-suggestionList"
                             options={availableFields}
                             onSelect={this._onSelectNewField} />
                     </div>

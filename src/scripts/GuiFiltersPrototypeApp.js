@@ -8,13 +8,14 @@ var ReactTransitionGroup = React.addons.TransitionGroup;
 require('../styles/normalize.css');
 require('../styles/main.css');
 
+var _ = require('underscore');
+
 // models
 var FilterStore = require('./models/filterStore');
 var FilterListModel = require('./models/filterListModel');
 
 // views
 var CompositeFilter = require('./views/compositeFilterList');
-var AddNewField = require('./views/addNewField');
 
 var defaultFilters = [
     {
@@ -33,16 +34,66 @@ var defaultFilters = [
 
 var allFields = [
     {fieldName: 'Name'},
-    {fieldName: 'Iteration'},
-    {fieldName: 'Team iteration'},
-    {fieldName: 'Release'},
-    {fieldName: 'Assigned to'},
-    {fieldName: 'States'},
-    {fieldName: 'Tags'},
+    {fieldName: 'Iteration', suggestions: _.range(1, 10).map(i => 'Sprint #' + i)},
+    {fieldName: 'Team iteration', suggestions: _.range(1, 10).map(i => 'Team Sprint #' + i)},
+    {fieldName: 'Release', suggestions: ['3.2', '3.2.1', '3.3', '3.4', '3.4.1', '3.4.2', '3.5', '3.5.1', '3.5.2', '3.6']},
+    {fieldName: 'Assigned to', suggestions: [
+        "Margret Becker",
+        "Herring Humphrey",
+        "Simone Dean",
+        "Cathryn Sweeney",
+        "Irene Barlow",
+        "Annie Reed",
+        "Garner Woodward",
+        "Daphne Sharpe",
+        "Yang Cook",
+        "Crosby Browning",
+        "Guerra Rojas",
+        "Robles Franks",
+        "Mcpherson Crane",
+        "Julie Underwood",
+        "Shauna Beach"
+    ]},
+    {fieldName: 'States', suggestions: ['Open', 'Planned', 'In progress', 'Done']},
+    {fieldName: 'Tags', suggestions: [
+        "Earthwax",
+        "Omatom",
+        "Kraggle",
+        "Nixelt",
+        "Undertap",
+        "Medicroix",
+        "Tersanki",
+        "Tsunamia",
+        "Kengen",
+        "Capscreen"
+    ]},
     {fieldName: 'CreateDate'},
     {fieldName: 'EndDate'},
-    {fieldName: 'Project'},
-    {fieldName: 'Team'}
+    {fieldName: 'Effort'},
+    {fieldName: 'Project', suggestions: [
+        "Ronelon",
+        "Qimonk",
+        "Apextri",
+        "Emtrak",
+        "Mobildata",
+        "Makingway",
+        "Snorus",
+        "Locazone",
+        "Oulu",
+        "Comtours"
+    ]},
+    {fieldName: 'Team', suggestions: [
+        "Fiberox",
+        "Magnina",
+        "Xplor",
+        "Harmoney",
+        "Quizmo",
+        "Zidant",
+        "Proflex",
+        "Avit",
+        "Koogle",
+        "Verton"
+    ]}
 ];
 
 var store = new FilterStore();

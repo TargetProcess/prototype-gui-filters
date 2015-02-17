@@ -1,12 +1,11 @@
 var _ = require('underscore');
 
 class FilterModel {
-    constructor(store, {fieldName, filterParts}) {
+    constructor(store, fieldMetaInfo, filterParts) {
         this._store = store;
-        this.fieldName = fieldName;
+        this._metaInfo = fieldMetaInfo;
+        this.fieldName = fieldMetaInfo.fieldName;
         this.filterParts = filterParts;
-
-        this._isEditing = false;
     }
 
     get compiledFilterText() {
@@ -21,6 +20,15 @@ class FilterModel {
             .join(' or ');
 
         return '(' + result + ')';
+    }
+
+    get suggestions() {
+        var baseSuggestions = this._metaInfo.suggestions || [];
+        return _
+            .chain(baseSuggestions)
+            .filter(sugg => !_.contains(this.filterParts, sugg))
+            .sortBy(_.identity)
+            .value();
     }
 
     addPart(partText) {
@@ -39,7 +47,7 @@ class FilterListModel {
     constructor(store, allFields, filters) {
         this._store = store;
         this._allFields = allFields;
-        this.filters = _.map(filters, f => new FilterModel(this._store, f));
+        this.filters = _.map(filters, f => this._createFilterModel(f.fieldName, f.filterParts));
     }
 
     get compiledFilterText() {
@@ -58,12 +66,18 @@ class FilterListModel {
             .chain(this._allFields)
             .map(f => f.fieldName)
             .difference(_.map(this.filters, f => f.fieldName))
+            .sortBy(_.identity)
             .value();
     }
 
     addNewField(fieldName) {
-        this.filters.push(new FilterModel(this._store, {fieldName: fieldName, filterParts: []}));
+        this.filters.push(this._createFilterModel(fieldName, []));
         this._store.notifyFiltersChanged();
+    }
+
+    _createFilterModel(fieldName, filterParts) {
+        var field = _.findWhere(this._allFields, {fieldName: fieldName});
+        return new FilterModel(this._store, field, filterParts);
     }
 }
 

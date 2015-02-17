@@ -32,6 +32,14 @@ var defaultFilterGroups = [
     }
 ];
 
+var dateSuggestions = [
+    'today',
+    'last 3 days',
+    'last 7 days',
+    'last week',
+    'last month'
+];
+
 var allFields = [
     {fieldName: 'Name'},
     {fieldName: 'Iteration', suggestions: _.range(1, 10).map(i => 'Sprint #' + i)},
@@ -67,9 +75,9 @@ var allFields = [
         "Kengen",
         "Capscreen"
     ]},
-    {fieldName: 'CreateDate'},
-    {fieldName: 'EndDate'},
-    {fieldName: 'Effort'},
+    {fieldName: 'CreateDate', suggestions: dateSuggestions},
+    {fieldName: 'EndDate', suggestions: dateSuggestions},
+    {fieldName: 'Effort', suggestions: ['more than 3', 'equal to 3', 'less than 3']},
     {fieldName: 'Project', suggestions: [
         "Ronelon",
         "Qimonk",

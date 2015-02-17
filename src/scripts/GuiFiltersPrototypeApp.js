@@ -34,8 +34,8 @@ var defaultFilterGroups = [
 
 var dateSuggestions = [
     'today',
-    'last 3 days',
-    'last 7 days',
+    'last %3% days',
+    'last %7% days',
     'last week',
     'last month'
 ];
@@ -77,7 +77,7 @@ var allFields = [
     ]},
     {fieldName: 'CreateDate', suggestions: dateSuggestions},
     {fieldName: 'EndDate', suggestions: dateSuggestions},
-    {fieldName: 'Effort', suggestions: ['more than 3', 'equal to 3', 'less than 3']},
+    {fieldName: 'Effort', suggestions: ['more than %3%', 'equal to %3%', 'less than %3%']},
     {fieldName: 'Project', suggestions: [
         "Ronelon",
         "Qimonk",

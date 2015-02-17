@@ -1,11 +1,12 @@
 var _ = require('underscore');
+var FilterModel = require('./filterModel');
 
 class FilterGroupModel {
     constructor(store, fieldMetaInfo, filters) {
         this._store = store;
         this._metaInfo = fieldMetaInfo;
         this.fieldName = fieldMetaInfo.fieldName;
-        this.filters = filters;
+        this.filters = _.map(filters, this._createFilterModel, this);
     }
 
     get compiledFilterText() {
@@ -15,7 +16,7 @@ class FilterGroupModel {
 
         var result = _
             .chain(this.filters)
-            .map(p => this.fieldName + ' is ' + p)
+            .map(f => this.fieldName + ' is ' + f.compositeFilterText)
             .value()
             .join(' or ');
 
@@ -23,23 +24,28 @@ class FilterGroupModel {
     }
 
     get suggestions() {
+        var currentFilterValues = _.map(this.filters, f => f.compositeFilterText);
         var baseSuggestions = this._metaInfo.suggestions || [];
         return _
             .chain(baseSuggestions)
-            .filter(sugg => !_.contains(this.filters, sugg))
+            .filter(sugg => !_.contains(currentFilterValues, sugg))
             .sortBy(_.identity)
             .value();
     }
 
     addFilter(filterText) {
-        this.filters.push(filterText);
-        this.filters = _.sortBy(this.filters, _.identity);
+        this.filters.push(this._createFilterModel(filterText));
+        this.filters = _.sortBy(this.filters, f => f.compositeFilterText);
         this._store.notifyFiltersChanged();
     }
 
     removeFilter(filter) {
         this.filters = _.without(this.filters, filter);
         this._store.notifyFiltersChanged();
+    }
+
+    _createFilterModel(filterText) {
+        return new FilterModel(this._store, filterText);
     }
 }
 

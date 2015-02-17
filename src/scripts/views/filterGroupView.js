@@ -12,7 +12,7 @@ var FieldFilter = React.createClass({
 
         var filters = _.map(model.filters, filter =>
             <FilterView
-                value={filter}
+                filterParts={filter.filterParts}
                 removeFilter={model.removeFilter.bind(model, filter)}/>);
 
         filters.push(<FieldNewFilterEditor

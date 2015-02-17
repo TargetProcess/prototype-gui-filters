@@ -28,7 +28,7 @@ var defaultFilterGroups = [
     },
     {
         fieldName: 'Effort',
-        filters: ['more than 3']
+        filters: ['more than %3%']
     }
 ];
 

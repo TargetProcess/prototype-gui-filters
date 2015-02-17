@@ -52,6 +52,11 @@
     position: relative;
 }
 
+.filterList-field-filter-part--editable {
+    border-bottom: 1px dotted cornflowerblue;
+    cursor: pointer;
+}
+
 .filterList-field-filter-remove::after {
     display: inline-block;
     content: 'x';

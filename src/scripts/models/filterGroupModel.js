@@ -35,7 +35,6 @@ class FilterGroupModel {
 
     addFilter(filterText) {
         this.filters.push(this._createFilterModel(filterText));
-        this.filters = _.sortBy(this.filters, f => f.compositeFilterText);
         this._store.notifyFiltersChanged();
     }
 

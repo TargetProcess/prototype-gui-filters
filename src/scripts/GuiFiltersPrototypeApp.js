@@ -15,20 +15,20 @@ var FilterStore = require('./models/filterStore');
 var FilterListModel = require('./models/filterListModel');
 
 // views
-var CompositeFilter = require('./views/compositeFilterList');
+var CompositeFilter = require('./views/compositeFilterListView');
 
-var defaultFilters = [
+var defaultFilterGroups = [
     {
         fieldName: 'Name',
-        filterParts: []
+        filters: []
     },
     {
         fieldName: 'Release',
-        filterParts: ['3.5.3', '3.6.0']
+        filters: ['3.5.3', '3.6.0']
     },
     {
         fieldName: 'Effort',
-        filterParts: ['more than 3']
+        filters: ['more than 3']
     }
 ];
 
@@ -97,7 +97,7 @@ var allFields = [
 ];
 
 var store = new FilterStore();
-var model = new FilterListModel(store, allFields, defaultFilters);
+var model = new FilterListModel(store, allFields, defaultFilterGroups);
 
 var GuiFiltersPrototypeApp = React.createClass({
     componentDidMount() {

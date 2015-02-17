@@ -2,8 +2,8 @@
 
 var React = require('react/addons');
 var _ = require('underscore');
-var FieldFilter = require('./fieldFilter');
-var AddNewField = require('./addNewField');
+var FieldGroup = require('./filterGroupView');
+var AddNewField = require('./addNewFieldView');
 
 var CompositeFilterList = React.createClass({
     getInitialState() {
@@ -15,13 +15,13 @@ var CompositeFilterList = React.createClass({
     render: function() {
         var model = this.props.model;
 
-        var fieldFilters = _.map(model.filters, filter =>
-            <FieldFilter filterModel={filter}/>);
+        var filterGroups = _.map(model.filterGroups, filter =>
+            <FieldGroup filterModel={filter}/>);
 
         return (
             <div className="filterList">
                 <div className="filterList-fields">
-                    {fieldFilters}
+                    {filterGroups}
                     <AddNewField
                         availableFields={model.newFieldSuggestions}
                         addNewField={model.addNewField.bind(model)}/>

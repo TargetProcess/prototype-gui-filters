@@ -34,19 +34,14 @@
     border-right: 1px solid #ccc;
 }
 
-.filterList-field-parts {
+.filterList-field-filters {
     padding: 3px 0;
     margin: 0 0 0 10px;
     display: flex;
     flex-wrap: wrap;
 }
 
-.filterList-field-parts--empty {
-    color: #c0c0c0;
-    padding: 5px;
-}
-
-.filterList-field-fieldPart {
+.filterList-field-filter {
     display: inline-block;
     margin: 0 10px 5px 0;
     min-width: 40px;
@@ -57,7 +52,7 @@
     position: relative;
 }
 
-.filterList-field-fieldPart-remove::after {
+.filterList-field-filter-remove::after {
     display: inline-block;
     content: 'x';
     color: red;

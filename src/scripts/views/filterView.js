@@ -2,20 +2,12 @@
 
 var React = require('react/addons');
 var _ = require('underscore');
-
-var FilterPart = React.createClass({
-    render() {
-        var className = React.addons.classSet({
-            'filterList-field-filter-part--editable': this.props.isEditable
-        });
-
-        return (<span className={className}>{this.props.value}</span>);
-    }
-});
+var FilterPart = require('./filterPartView');
 
 var FieldFilter = React.createClass({
     render() {
-        var parts = _.map(this.props.filterParts, part => <FilterPart {...part} />);
+        var parts = _.map(this.props.filterParts, part =>
+            <FilterPart partModel={part}/>);
 
         return (
             <div className="filterList-field-filter">

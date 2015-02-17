@@ -53,8 +53,13 @@
 }
 
 .filterList-field-filter-part--editable {
+    padding: 0 4px;
     border-bottom: 1px dotted cornflowerblue;
     cursor: pointer;
+}
+
+.filterList-field-partEditor {
+    width: 80px;
 }
 
 .filterList-field-filter-remove::after {

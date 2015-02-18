@@ -1,5 +1,4 @@
 var React = require('react/addons');
-var ReactTransitionGroup = React.addons.TransitionGroup;
 
 // Export React so the devtools can find it
 (window !== window.top ? window.top : window).React = React;
@@ -108,19 +107,52 @@ var store = new FilterStore();
 var model = new FilterListModel(store, allFields, defaultFilterGroups);
 
 var GuiFiltersPrototypeApp = React.createClass({
+    getInitialState() {
+        return {
+            isFieldListVisible: false
+        };
+    },
+
     componentDidMount() {
         store.on('filtersChanged', function() {
             this.forceUpdate();
-        }.bind(this))
+        }.bind(this));
+
+        document.querySelector('body').addEventListener('focus', function() {
+            console.log('body focus');
+            this.setState({isFieldListVisible: false});
+        }.bind(this));
+    },
+
+    _onInputFocus() {
+        console.log('input focus');
+        this.setState({isFieldListVisible: true});
+    },
+
+    _onDismissClick() {
+        this.setState({isFieldListVisible: false});
     },
 
     render: function() {
+        var filterList = this.state.isFieldListVisible ?
+            <CompositeFilter
+                model={model}
+                onDismiss={this._onDismissClick}/> :
+            null;
+
         return (
             <div className="main">
                 <div className="main-centered">
-                    <div className="compiledFilterText">{model.compiledFilterText}</div>
-                    <CompositeFilter model={model}/>
-
+                    <div
+                        tabIndex="0"
+                        className="filterControlsPrototype">
+                        <input
+                            className="compiledFilterText"
+                            type="text"
+                            value={model.compiledFilterText}
+                            onFocus={this._onInputFocus}/>
+                        {filterList}
+                    </div>
                 </div>
             </div>
         );

@@ -14,7 +14,7 @@
     width: 100%;
 }
 
-.filterList {
+.filterControlsPrototype {
     font-size: 14px;
 }
 
@@ -89,5 +89,10 @@
 }
 
 .filterList-addNewField-listContainer {
+    margin-right: 10px;
+}
+
+.filterList-controlRow-control {
+    display: inline-block;
     margin-right: 10px;
 }

@@ -109,11 +109,18 @@ html, body, #content {
 
 .filterList-suggestionList .Select-control {
     height: 22px;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 .filterList-suggestionList .Select-arrow {
     top: 8px;
     right: 8px;
+}
+
+.filterList-suggestionList .Select-placeholder {
+    padding-top: 4px;
+    padding-bottom: 4px;
 }
 
 .filterList-addNewField-listContainer {
@@ -125,8 +132,4 @@ html, body, #content {
     margin: 10px 10px 5px 0;
     font-size: 12px;
     padding: 5px 10px;
-}
-
-.filterList-dismissControl {
-    float: right;
 }

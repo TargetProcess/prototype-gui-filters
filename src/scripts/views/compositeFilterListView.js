@@ -20,22 +20,27 @@ var CompositeFilterList = React.createClass({
                 removeFilterGroup={model.removeField.bind(model, filter)}
                 filterModel={filter}/>);
 
+        var suggestions = model.newFieldSuggestions;
+        var addNew = suggestions.length ?
+            <AddNewField
+                availableFields={model.newFieldSuggestions}
+                addNewField={model.addNewField.bind(model)}/> :
+            null;
+
         return (
             <div className="filterList">
                 <div className="filterList-fields">
                     {filterGroups}
-                    <AddNewField
-                        availableFields={model.newFieldSuggestions}
-                        addNewField={model.addNewField.bind(model)}/>
-                    <input
-                        className="filterList-controlRow-control filterList-dismissControl"
-                        type="button"
-                        value="Cancel"
-                        onClick={this.props.onDismiss}/>
+                    {addNew}
                     <input
                         className="filterList-controlRow-control filterList-dismissControl"
                         type="button"
                         value="Apply"
+                        onClick={this.props.onDismiss}/>
+                    <input
+                        className="filterList-controlRow-control filterList-dismissControl"
+                        type="button"
+                        value="Cancel"
                         onClick={this.props.onDismiss}/>
                 </div>
             </div>

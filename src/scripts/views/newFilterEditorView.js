@@ -29,6 +29,7 @@ var FieldNewFilterEditor = React.createClass({
         var input = this.props.suggestions.length ?
             <SuggestionList
                 containerClassName="filterList-suggestionList"
+                placeholder="Choose"
                 options={this.props.suggestions}
                 onSelect={this._onSelectSuggestion}/> :
             <input

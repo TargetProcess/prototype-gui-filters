@@ -9,7 +9,8 @@ var SuggestionList = React.createClass({
         return {
             autoFocus: false,
             containerClassName: '',
-            options: []
+            options: [],
+            placeholder: ''
         }
     },
 
@@ -57,7 +58,7 @@ var SuggestionList = React.createClass({
                 <ReactSelect
                     ref="selectBox"
                     name="suggestion-box"
-                    value=""
+                    placeholder={this.props.placeholder}
                     options={options}
                     onChange={this._handleSelect} />
             </div>

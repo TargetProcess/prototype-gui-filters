@@ -7,6 +7,9 @@ var React = require('react/addons');
 require('../styles/normalize.css');
 require('../styles/main.css');
 
+// Images
+require('../images/board_background.png');
+
 var _ = require('underscore');
 
 // models
@@ -41,10 +44,11 @@ var dateSuggestions = [
 
 var allFields = [
     {fieldName: 'Name'},
-    {fieldName: 'Iteration', suggestions: _.range(1, 10).map(i => 'Sprint #' + i)},
-    {fieldName: 'Team iteration', suggestions: _.range(1, 10).map(i => 'Team Sprint #' + i)},
-    {fieldName: 'Release', suggestions: ['3.2', '3.2.1', '3.3', '3.4', '3.4.1', '3.4.2', '3.5', '3.5.1', '3.5.2', '3.6']},
+    {fieldName: 'Iteration', suggestions: _.range(1, 10).map(i => 'Sprint #' + i).concat('current')},
+    {fieldName: 'Team iteration', suggestions: _.range(1, 10).map(i => 'Team Sprint #' + i).concat('current')},
+    {fieldName: 'Release', suggestions: ['3.2', '3.2.1', '3.3', '3.4', '3.4.1', '3.4.2', '3.5', '3.5.1', '3.5.2', '3.6', 'current']},
     {fieldName: 'Assigned to', suggestions: [
+        "Me",
         "Margret Becker",
         "Herring Humphrey",
         "Simone Dean",

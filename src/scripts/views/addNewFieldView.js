@@ -45,6 +45,7 @@ var AddNewField = React.createClass({
 
         return (
             <input
+                className="filterList-controlRow-control"
                 type="button"
                 value="+ Add new"
                 onClick={this._onAddNewClicked}/>

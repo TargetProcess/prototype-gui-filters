@@ -1,16 +1,21 @@
+html, body, #content {
+    height: 100%;
+}
+
 .main {
-    margin: 48px 0;
+    background: url('../images/board_background.png') no-repeat;
+    height: 100%;
 }
 
 .main-centered {
     width: 700px;
-    margin: 0 auto;
+    position: absolute;
+    left: 400px;
+    top: 57px;
 }
 
 .compiledFilterText {
-    margin: 0 0 20px 0;
-    padding: 5px;
-    font-size: 14px;
+    padding: 5px 10px;
     width: 100%;
 }
 
@@ -18,10 +23,19 @@
     font-size: 14px;
 }
 
+.filterList {
+    width: 100%;
+    padding: 5px 10px;
+    background: #fff;
+    border: 1px solid #aaa;
+    border-top-width: 0;
+}
+
 .filterList-field {
-    margin: 0 0 5px 0;
-    padding: 5px 8px;
-    border: 1px solid #ccc;
+    font-size: 12px;
+    margin: 0;
+    padding: 3px 8px;
+    border-bottom: 1px solid #ccc;
 
     display: flex;
     flex-direction: row;
@@ -30,12 +44,12 @@
 .filterList-field-name {
     flex-basis: 150px;
     min-width: 150px;
-    padding: 5px 0;
-    border-right: 1px solid #ccc;
+    padding: 6px 0;
+    border-right: 1px solid #ddd;
 }
 
 .filterList-field-filters {
-    padding: 3px 0;
+    padding: 3px 0 0 0;
     margin: 0 0 0 10px;
     display: flex;
     flex-wrap: wrap;
@@ -94,5 +108,11 @@
 
 .filterList-controlRow-control {
     display: inline-block;
-    margin-right: 10px;
+    margin: 10px 10px 5px 0;
+    font-size: 12px;
+    padding: 5px 10px;
+}
+
+.filterList-dismissControl {
+    float: right;
 }

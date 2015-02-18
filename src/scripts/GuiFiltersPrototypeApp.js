@@ -26,11 +26,13 @@ var defaultFilterGroups = [
     },
     {
         fieldName: 'Release',
-        filters: ['3.5.3', '3.6.0']
+        filters: []
+        //filters: ['3.5.3', '3.6.0']
     },
     {
         fieldName: 'Effort',
-        filters: ['more than %3%']
+        filters: []
+        //filters: ['more than %3%']
     }
 ];
 
@@ -144,6 +146,8 @@ var GuiFiltersPrototypeApp = React.createClass({
                 onDismiss={this._onDismissClick}/> :
             null;
 
+        var placeholder = this.state.isFieldListVisible ? 'Choose the entity fields to filter' : 'Click to build a filter';
+
         return (
             <div className="main">
                 <div className="main-centered">
@@ -153,6 +157,7 @@ var GuiFiltersPrototypeApp = React.createClass({
                         <input
                             className="compiledFilterText"
                             type="text"
+                            placeholder={placeholder}
                             value={model.compiledFilterText}
                             onFocus={this._onInputFocus}/>
                         {filterList}

@@ -16,7 +16,7 @@ class FilterListModel {
             .value()
             .join(' and ');
 
-        return '?' + result;
+        return result.length ? '?' + result : '';
     }
 
     get newFieldSuggestions() {

@@ -16,7 +16,9 @@ var CompositeFilterList = React.createClass({
         var model = this.props.model;
 
         var filterGroups = _.map(model.filterGroups, filter =>
-            <FieldGroup filterModel={filter}/>);
+            <FieldGroup
+                removeFilterGroup={model.removeField.bind(model, filter)}
+                filterModel={filter}/>);
 
         return (
             <div className="filterList">

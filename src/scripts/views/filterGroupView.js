@@ -21,7 +21,11 @@ var FieldFilter = React.createClass({
 
         return (
             <div className="filterList-field">
-                <div className="filterList-field-name">{model.fieldName}</div>
+                <div className="filterList-field-name">
+                    <span>{model.fieldName}</span>
+                    <div className="filterList-field-remove" onClick={this.props.removeFilterGroup}/>
+                </div>
+
                 <div className="filterList-field-filters">
                     {filters}
                 </div>

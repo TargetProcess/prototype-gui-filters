@@ -33,6 +33,11 @@ class FilterListModel {
         this._store.notifyFiltersChanged();
     }
 
+    removeField(filterGroup) {
+        this.filterGroups = _.without(this.filterGroups, filterGroup);
+        this._store.notifyFiltersChanged();
+    }
+
     _createFilterGroupModel(fieldName, filters) {
         var field = _.findWhere(this._allFields, {fieldName: fieldName});
         return new FilterGroupModel(this._store, field, filters);

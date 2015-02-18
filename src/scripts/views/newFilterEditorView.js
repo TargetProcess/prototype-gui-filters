@@ -30,11 +30,12 @@ var FieldNewFilterEditor = React.createClass({
             <SuggestionList
                 autoFocus={this.props.autoFocus}
                 containerClassName="filterList-suggestionList"
-                placeholder="Choose"
+                placeholder={this.props.alreadyHasFilters ? 'or ...' : 'Choose ...'}
                 options={this.props.suggestions}
                 onSelect={this._onSelectSuggestion}/> :
             <input
                 type="text"
+                placeholder="Type a filter"
                 valueLink={this.linkState('text')}
                 onKeyDown={this._onKeyDown}/>;
 

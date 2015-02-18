@@ -16,6 +16,7 @@ var FieldFilter = React.createClass({
                 removeFilter={model.removeFilter.bind(model, filter)}/>);
 
         filters.push(<FieldNewFilterEditor
+            autoFocus={this.props.isNewFilterGroup && filters.length === 0}
             suggestions={suggestions}
             addFilter={model.addFilter.bind(model)}/>);
 

@@ -8,8 +8,19 @@ var AddNewField = require('./addNewFieldView');
 var CompositeFilterList = React.createClass({
     getInitialState() {
         return {
-            focusedField: null
+            focusedField: null,
+            newFilterGroupKey: null,
+            addedCount: 0
         }
+    },
+
+    _onAddNewField(fieldName) {
+        var newGroup = this.props.model.addNewField(fieldName);
+        this.setState({
+            // addedCount is a trick to always render "new field" dropdown from scratch when value is selected due to its buggy behavior
+            addedCount: this.state.addedCount + 1,
+            newFilterGroupKey: newGroup.filterGroupKey
+        });
     },
 
     render: function() {
@@ -17,14 +28,16 @@ var CompositeFilterList = React.createClass({
 
         var filterGroups = _.map(model.filterGroups, filter =>
             <FieldGroup
+                isNewFilterGroup={filter.filterGroupKey === this.state.newFilterGroupKey}
                 removeFilterGroup={model.removeField.bind(model, filter)}
                 filterModel={filter}/>);
 
         var suggestions = model.newFieldSuggestions;
         var addNew = suggestions.length ?
             <AddNewField
+                key={'addnew_' + this.state.addedCount}
                 availableFields={model.newFieldSuggestions}
-                addNewField={model.addNewField.bind(model)}/> :
+                addNewField={this._onAddNewField}/> :
             null;
 
         return (

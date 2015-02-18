@@ -121,7 +121,7 @@ var GuiFiltersPrototypeApp = React.createClass({
 
     componentDidMount() {
         store.on('filtersChanged', function() {
-            this.forceUpdate();
+            this.setState(this.state);
         }.bind(this));
 
         document.querySelector('body').addEventListener('focus', function() {

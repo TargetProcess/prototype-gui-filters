@@ -16,7 +16,7 @@ var SuggestionList = React.createClass({
 
     getInitialState() {
         return {
-            selectedValue: '',
+            selectedValue: null,
             filterText: ''
         }
     },
@@ -60,6 +60,7 @@ var SuggestionList = React.createClass({
                     name="suggestion-box"
                     placeholder={this.props.placeholder}
                     options={options}
+                    value={this.state.selectedValue}
                     onChange={this._handleSelect} />
             </div>
         )

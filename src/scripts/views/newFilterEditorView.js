@@ -28,6 +28,7 @@ var FieldNewFilterEditor = React.createClass({
     render() {
         var input = this.props.suggestions.length ?
             <SuggestionList
+                autoFocus={this.props.autoFocus}
                 containerClassName="filterList-suggestionList"
                 placeholder="Choose"
                 options={this.props.suggestions}

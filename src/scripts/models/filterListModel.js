@@ -29,8 +29,11 @@ class FilterListModel {
     }
 
     addNewField(fieldName) {
-        this.filterGroups.push(this._createFilterGroupModel(fieldName, []));
+        var newGroup = this._createFilterGroupModel(fieldName, []);
+        this.filterGroups.push(newGroup);
         this._store.notifyFiltersChanged();
+
+        return newGroup;
     }
 
     removeField(filterGroup) {

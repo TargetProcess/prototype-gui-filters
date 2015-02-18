@@ -33,6 +33,10 @@ class FilterGroupModel {
             .value();
     }
 
+    get filterGroupKey() {
+        return this.fieldName;
+    }
+
     addFilter(filterText) {
         this.filters.push(this._createFilterModel(filterText));
         this._store.notifyFiltersChanged();

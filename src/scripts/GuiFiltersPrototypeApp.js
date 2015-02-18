@@ -45,7 +45,7 @@ var dateSuggestions = [
 ];
 
 var allFields = [
-    {fieldName: 'Name'},
+    {fieldName: 'Name', singleton: true},
     {fieldName: 'Iteration', suggestions: _.range(1, 10).map(i => 'Sprint #' + i).concat('current')},
     {fieldName: 'Team iteration', suggestions: _.range(1, 10).map(i => 'Team Sprint #' + i).concat('current')},
     {fieldName: 'Release', suggestions: ['3.2', '3.2.1', '3.3', '3.4', '3.4.1', '3.4.2', '3.5', '3.5.1', '3.5.2', '3.6', 'current']},

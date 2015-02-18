@@ -37,6 +37,14 @@ class FilterGroupModel {
         return this.fieldName;
     }
 
+    get canAddNewFilter() {
+        if (this._metaInfo.singleton && this.filters.length > 0) {
+            return false;
+        }
+
+        return true;
+    }
+
     addFilter(filterText) {
         this.filters.push(this._createFilterModel(filterText));
         this._store.notifyFiltersChanged();

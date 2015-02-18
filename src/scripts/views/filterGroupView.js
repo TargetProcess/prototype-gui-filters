@@ -15,11 +15,13 @@ var FieldFilter = React.createClass({
                 filterParts={filter.filterParts}
                 removeFilter={model.removeFilter.bind(model, filter)}/>);
 
-        filters.push(<FieldNewFilterEditor
-            autoFocus={this.props.isNewFilterGroup && filters.length === 0}
-            alreadyHasFilters={filters.length > 0}
-            suggestions={suggestions}
-            addFilter={model.addFilter.bind(model)}/>);
+        if (model.canAddNewFilter) {
+            filters.push(<FieldNewFilterEditor
+                autoFocus={this.props.isNewFilterGroup && filters.length === 0}
+                alreadyHasFilters={filters.length > 0}
+                suggestions={suggestions}
+                addFilter={model.addFilter.bind(model)}/>);
+        }
 
         return (
             <div className="filterList-field">
